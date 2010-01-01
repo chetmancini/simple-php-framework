@@ -1,4 +1,4 @@
-<?PHP
+<?php
     function printr($var)
     {
         $output = print_r($var, true);
@@ -397,6 +397,15 @@
             return false;
     }
 
+    //checks to see if a password is valid.  Must contain a number and be of minimum length $min.
+    function valid_password($password, $min)
+    {
+        if (!preg_match('#[0-9]#', $password) || strlen($password)<$min){ 
+            return false;
+        }
+        return true;
+    }
+
     // Grabs the contents of a remote URL. Can perform basic authentication if un/pw are provided.
     function geturl($url, $username = null, $password = null)
     {
@@ -749,3 +758,4 @@
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         return isset($mime_types[$ext]) ? $mime_types[$ext] : $default;
     }
+?>
